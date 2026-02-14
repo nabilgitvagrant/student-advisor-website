@@ -1,0 +1,80 @@
+.advisors-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.advisors-page h1 {
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+
+.advisors-page > p {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.advisors-filter {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.filter-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.advisors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.advisor-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.advisor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.advisor-image {
+  font-size: 64px;
+  margin-bottom: 15px;
+}
+
+.advisor-card h3 {
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.specialty {
+  color: #7c3aed;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .advisors-grid {
+    grid-template-columns: 1fr;
+  }
+}
