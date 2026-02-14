@@ -16,35 +16,20 @@ const Home = () => {
             <Link to="/book" className="btn btn-secondary">
               Book Now
             </Link>
+            <a 
+              href="https://github.com/YOUR_USERNAME/student-advisor-website" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              style={{ marginLeft: '10px' }}
+            >
+              GitHub Repo
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="features">
-        <h2>Why Choose Us?</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">👨‍🏫</div>
-            <h3>Expert Advisors</h3>
-            <p>Connect with experienced academic advisors.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">📅</div>
-            <h3>Easy Scheduling</h3>
-            <p>Book appointments at times that work for you.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">📚</div>
-            <h3>Learning Resources</h3>
-            <p>Access guides and materials for success.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">📊</div>
-            <h3>Track Progress</h3>
-            <p>Monitor your academic journey.</p>
-          </div>
-        </div>
-      </section>
+      {/* Rest of component... */}
     </div>
   );
 };
