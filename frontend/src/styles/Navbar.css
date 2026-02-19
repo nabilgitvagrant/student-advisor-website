@@ -27,6 +27,7 @@
   display: flex;
   list-style: none;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-link {
@@ -34,10 +35,50 @@
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.3s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .nav-link:hover {
   opacity: 0.8;
+}
+
+.nav-link-register {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 2px solid white;
+}
+
+.nav-link-register:hover {
+  background: white;
+  color: #2563eb;
+}
+
+.nav-user {
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 2px solid white;
+}
+
+.logout-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
 }
 
 .hamburger {
@@ -68,6 +109,8 @@
 
   .nav-link {
     padding: 10px 20px;
+    width: 100%;
+    text-align: left;
   }
 
   .hamburger {

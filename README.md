@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Student Advisor Website
 
 A multi-page student advisor platform built with React and Node.js.
@@ -36,3 +37,7 @@ A multi-page student advisor platform built with React and Node.js.
 cd backend
 npm install
 npm start
+=======
+# student-advisor-website
+Multi-page student advisor website with React and Node.js
+>>>>>>> 004a10ab91b5941dd583643fe00869688be4af27
