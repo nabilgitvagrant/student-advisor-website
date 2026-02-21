@@ -9,10 +9,9 @@ const advisors = [
     specialty: 'Business & Economics',
     rating: 4.9,
     reviews: 124,
+    email: 'sarah@studentadvisor.com',
     bio: 'Expert in business strategy and academic planning with 15+ years of experience.',
-    availability: 'Mon-Fri, 9AM-5PM',
-    email: 'sarah.johnson@studentadvisor.com',
-    phone: '+1 (555) 123-4567'
+    availability: 'Mon-Fri, 9AM-5PM'
   },
   {
     id: 2,
@@ -20,10 +19,9 @@ const advisors = [
     specialty: 'Engineering & Technology',
     rating: 4.8,
     reviews: 98,
+    email: 'michael@studentadvisor.com',
     bio: 'Specialized in technical education and career development in tech industry.',
-    availability: 'Tue-Thu, 10AM-6PM',
-    email: 'michael.chen@studentadvisor.com',
-    phone: '+1 (555) 234-5678'
+    availability: 'Tue-Thu, 10AM-6PM'
   },
   {
     id: 3,
@@ -31,10 +29,9 @@ const advisors = [
     specialty: 'Liberal Arts & Sciences',
     rating: 4.9,
     reviews: 156,
+    email: 'emily@studentadvisor.com',
     bio: 'Passionate about interdisciplinary education and student success.',
-    availability: 'Mon-Fri, 8AM-4PM',
-    email: 'emily.williams@studentadvisor.com',
-    phone: '+1 (555) 345-6789'
+    availability: 'Mon-Fri, 8AM-4PM'
   },
   {
     id: 4,
@@ -42,10 +39,9 @@ const advisors = [
     specialty: 'STEM & Research',
     rating: 4.7,
     reviews: 87,
+    email: 'david@studentadvisor.com',
     bio: 'Focused on research opportunities and graduate school preparation.',
-    availability: 'Wed-Fri, 11AM-7PM',
-    email: 'david.rodriguez@studentadvisor.com',
-    phone: '+1 (555) 456-7890'
+    availability: 'Wed-Fri, 11AM-7PM'
   },
   {
     id: 5,
@@ -53,10 +49,9 @@ const advisors = [
     specialty: 'Health & Medical Sciences',
     rating: 4.9,
     reviews: 142,
+    email: 'lisa@studentadvisor.com',
     bio: 'Expert advisor for pre-med and health science students.',
-    availability: 'Mon, Tue, Thu, Fri',
-    email: 'lisa.anderson@studentadvisor.com',
-    phone: '+1 (555) 567-8901'
+    availability: 'Mon, Tue, Thu, Fri'
   },
   {
     id: 6,
@@ -64,33 +59,34 @@ const advisors = [
     specialty: 'Arts & Humanities',
     rating: 4.8,
     reviews: 110,
+    email: 'james@studentadvisor.com',
     bio: 'Specializing in creative fields and liberal arts education.',
-    availability: 'Mon-Wed, 1PM-6PM',
-    email: 'james.wilson@studentadvisor.com',
-    phone: '+1 (555) 678-9012'
+    availability: 'Mon-Wed, 1PM-6PM'
   }
 ];
 
 // Get all advisors
 router.get('/', (req, res) => {
   try {
-    console.log('✅ GET /advisors called - returning', advisors.length, 'advisors');
+    console.log('✅ GET /advisors called');
     res.json(advisors);
   } catch (error) {
+    console.error('❌ Error in GET /advisors:', error.message);
     res.status(500).json({ message: error.message });
   }
 });
 
-// Get single advisor by ID
+// Get single advisor
 router.get('/:id', (req, res) => {
   try {
     const advisor = advisors.find(a => a.id === parseInt(req.params.id));
     if (!advisor) {
       return res.status(404).json({ message: 'Advisor not found' });
     }
-    console.log('✅ GET /advisors/:id called - returning advisor', req.params.id);
+    console.log('✅ GET /advisors/:id called - returned', advisor.name);
     res.json(advisor);
   } catch (error) {
+    console.error('❌ Error in GET /advisors/:id:', error.message);
     res.status(500).json({ message: error.message });
   }
 });
@@ -103,9 +99,10 @@ router.post('/', (req, res) => {
       ...req.body
     };
     advisors.push(newAdvisor);
-    console.log('✅ POST /advisors called - created new advisor');
+    console.log('✅ POST /advisors called');
     res.status(201).json(newAdvisor);
   } catch (error) {
+    console.error('❌ Error in POST /advisors:', error.message);
     res.status(400).json({ message: error.message });
   }
 });
@@ -118,9 +115,10 @@ router.put('/:id', (req, res) => {
       return res.status(404).json({ message: 'Advisor not found' });
     }
     Object.assign(advisor, req.body);
-    console.log('✅ PUT /advisors/:id called - updated advisor', req.params.id);
+    console.log('✅ PUT /advisors/:id called');
     res.json(advisor);
   } catch (error) {
+    console.error('❌ Error in PUT /advisors/:id:', error.message);
     res.status(400).json({ message: error.message });
   }
 });
@@ -133,9 +131,10 @@ router.delete('/:id', (req, res) => {
       return res.status(404).json({ message: 'Advisor not found' });
     }
     const deletedAdvisor = advisors.splice(index, 1);
-    console.log('✅ DELETE /advisors/:id called - deleted advisor', req.params.id);
+    console.log('✅ DELETE /advisors/:id called');
     res.json({ message: 'Advisor deleted', advisor: deletedAdvisor[0] });
   } catch (error) {
+    console.error('❌ Error in DELETE /advisors/:id:', error.message);
     res.status(500).json({ message: error.message });
   }
 });

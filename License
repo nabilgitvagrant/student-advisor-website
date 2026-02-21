@@ -1,0 +1,52 @@
+
+---
+
+## Step 6: Deploy to Production
+
+Your app is ready to deploy even with mock data!
+
+### Deploy Backend to Render
+
+1. Go to: https://render.com
+2. Sign up with GitHub
+3. Click **New** → **Web Service**
+4. Connect your repository
+5. Fill in:
+   - **Name:** student-advisor-api
+   - **Root Directory:** backend
+   - **Build Command:** npm install
+   - **Start Command:** npm start
+   - **Environment:** Node
+6. Click **Create Web Service**
+
+### Deploy Frontend to Vercel
+
+1. Go to: https://vercel.com
+2. Sign up with GitHub
+3. Click **Import Project**
+4. Select your repository
+5. Click **Import**
+6. Vercel auto-configures for React
+7. Click **Deploy**
+
+Your app will be **live on the internet**! 🚀
+
+---
+
+## Step 7: Update GitHub
+
+```bash
+cd C:\Users\Admin\student-advisor-website
+
+git add .
+
+git commit -m "Deploy with mock data - MongoDB blocked by ISP
+
+- All features working with in-memory storage
+- User authentication functional
+- Appointment booking working
+- Ready for production deployment
+- Data persists during session, resets on restart
+- MongoDB available if network firewall is opened"
+
+git push origin main

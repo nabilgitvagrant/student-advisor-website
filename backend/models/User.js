@@ -1,64 +1,50 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// Mock database for users
-let users = [];
-let nextId = 1;
-
-class User {
-  constructor(name, email, password) {
-    this.id = nextId++;
-    this.name = name;
-    this.email = email;
-    this.password = this.hashPassword(password);
-    this.createdAt = new Date();
-  }
-
-  hashPassword(password) {
-    return bcrypt.hashSync(password, 10);
-  }
-
-  comparePassword(password) {
-    return bcrypt.compareSync(password, this.password);
-  }
-
-  toJSON() {
-    return {
-      id: this.id,
-      name: this.name,
-      email: this.email,
-      createdAt: this.createdAt
-    };
-  }
-}
-
-// User functions
-const UserModel = {
-  // Create new user
-  create: (name, email, password) => {
-    // Check if user already exists
-    if (users.find(u => u.email === email)) {
-      throw new Error('User already exists');
-    }
-
-    const user = new User(name, email, password);
-    users.push(user);
-    return user;
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
   },
-
-  // Find user by email
-  findByEmail: (email) => {
-    return users.find(u => u.email === email);
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true
   },
-
-  // Find user by ID
-  findById: (id) => {
-    return users.find(u => u.id === id);
+  password: {
+    type: String,
+    required: true
   },
-
-  // Get all users
-  getAll: () => {
-    return users.map(u => u.toJSON());
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
+});
+
+// Hash password before saving
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Method to compare passwords
+userSchema.methods.comparePassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = UserModel;
+// Method to return user without password
+userSchema.methods.toJSON = function() {
+  const user = this.toObject();
+  delete user.password;
+  return user;
+};
+
+module.exports = mongoose.model('User', userSchema);
